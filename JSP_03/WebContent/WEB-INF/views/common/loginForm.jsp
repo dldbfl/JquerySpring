@@ -11,7 +11,7 @@
 </head>
 <body>
 	<form action="login" method="post">
-		아이디 : <input type = "text" name = "id" value="${param.id} "/><br>	
+		아이디 : <input type = "text" name = "id" value="${param.id}"/><br>	
 		패스워드 : <input type = "password" name = "pwd" /><br>
 		<input type = "submit" value = "로그인" /><br>
 	</form>

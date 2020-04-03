@@ -1,4 +1,4 @@
-package com.jsp.servlet;
+package com.jsp.vo;
 
 public class MemberVO {
 	
