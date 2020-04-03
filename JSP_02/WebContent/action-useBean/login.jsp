@@ -28,6 +28,8 @@ loignRequest.setPwd(requset.getParameter("pwd");
 	member.setAddress("대전혁신도시 중구 대흥동");
 	
 	session.setAttribute("loginUser", member);
+	session.setMaxInactiveInterval(10);
+	
 %>
 	
 	

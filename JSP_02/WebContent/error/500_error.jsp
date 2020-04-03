@@ -3,8 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-	<% MemberVO loginUser = (MemberVO)session.getAttribute("loginUser"); %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +10,7 @@
 <title></title>
 </head>
 <body>
-	<h1><%=loginUser.getId() %>님 환영합니다.</h1>
-	<button type="button" onclick="logout_go();">로그아웃</button>
+	<h3>사려려ㅕㅓ우줘ㅓ어ㅓ어이어이거 5ㅁㅁㅁ0ㅁㅇㄴㅇㄴ0번 에러야아아ㅏㅏㅏ윽아ㅏ가살려줘어어어</h3>
+	<a href="javascript:history.go(-1);">뒤로가기</a>
 </body>
-
-<script>
-	function logout_go(){
-		location.href="logout.jsp";
-	
-	}
-
-</script>
 </html>
