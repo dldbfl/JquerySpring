@@ -6,6 +6,7 @@ import com.jsp.dao.LoginDao;
 import com.jsp.dao.LoginDaoImpl;
 import com.jsp.vo.MemberVO;
 
+
 public class LoginServiceImpl implements LoginService{
 
 	private LoginDao loginDao;
@@ -24,16 +25,18 @@ public class LoginServiceImpl implements LoginService{
 		}
 		
 		@Override
-		public List<MemberVO> loginMember(MemberVO mv) {
+		public MemberVO loginMember(MemberVO mv) {
 			return loginDao.loginMember(mv);
 		}
 		
-		public static void main(String[] args) {
+/*		public static void main(String[] args) {
 			MemberVO mv = new MemberVO();
 			mv.setId("dldbfl");
 			mv.setPwd("dldbfl");
 			
-			List<MemberVO> loginMember = LoginDaoImpl.getInstance().loginMember(mv);
+			MemberVO loginMember = LoginDaoImpl.getInstance().loginMember(mv);
+			loginMember = LoginDaoImpl.getInstance().loginMember(mv);
+			
 			System.out.println(loginMember);
-		}
+		}*/
 }

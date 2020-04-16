@@ -2,24 +2,31 @@ package com.jsp.vo;
 
 public class MemberVO {
 	
-	private String id  ;		//아이디
-	private String pwd  ;		//패스워드
-	private String phone  ;		//전화번호
-	private String email  ;		//이메일
-	private String picture  ;	//사진파일명
-	private String authority  ;	//권한
-	private int enabled  ;		//사용여부
+	private String  id       ;
+	private String  pwd        ;
+	private String  name      ;
+	private Integer     enabled     ;
+	private String  picture   ;
+	private String  authority ;
+	private String  phone    ;
+	private String  address  ;
+	private String  email    ;
+	
 	
 	public MemberVO() {}
-	public MemberVO(String id, String pwd, String phone, String email, String picture, String authority, int enabled) {
+
+	public MemberVO(String id, String pwd, String name, Integer enabled, String picture, String authority, String phone,
+			String address, String email) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
-		this.phone = phone;
-		this.email = email;
+		this.name = name;
+		this.enabled = enabled;
 		this.picture = picture;
 		this.authority = authority;
-		this.enabled = enabled;
+		this.phone = phone;
+		this.address = address;
+		this.email = email;
 	}
 
 	public String getId() {
@@ -38,20 +45,20 @@ public class MemberVO {
 		this.pwd = pwd;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getName() {
+		return name;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
+	public Integer getEnabled() {
+		return enabled;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEnabled(Integer enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getPicture() {
@@ -70,22 +77,37 @@ public class MemberVO {
 		this.authority = authority;
 	}
 
-	public int getEnabled() {
-		return enabled;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", pwd=" + pwd + ", phone=" + phone + ", email=" + email + ", picture=" + picture
-				+ ", authority=" + authority + ", enabled=" + enabled + "]";
+		return "MemberVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", enabled=" + enabled + ", picture="
+				+ picture + ", authority=" + authority + ", phone=" + phone + ", address=" + address + ", email="
+				+ email + "]";
 	}
 	
-	
-
 	
 	
 	

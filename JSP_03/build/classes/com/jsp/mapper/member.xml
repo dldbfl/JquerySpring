@@ -5,7 +5,7 @@
 			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="member">
 
-<select id="loginMember" parameterClass="mem" resultClass="mem">
+<select id="loginMember" parameterClass="MemberVO" resultClass="MemberVO">
 
  	SELECT *
  	FROM member

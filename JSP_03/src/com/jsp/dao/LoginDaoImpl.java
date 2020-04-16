@@ -47,15 +47,16 @@ public class LoginDaoImpl implements LoginDao {
 			return dao;
 		}
 		@Override
-		public List<MemberVO> loginMember(MemberVO mv){
-			List<MemberVO> memberList = new ArrayList<MemberVO>();
+		public MemberVO loginMember(MemberVO mv){
+			MemberVO member = new MemberVO();
 		
 			try {
-				memberList = smc.queryForList("member.loginMember",mv);
+				member = (MemberVO) smc.queryForObject("member.loginMember",mv);
+//				System.out.println(member.getId());
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
-			return memberList;
+			return member;
 	
 	}
 }

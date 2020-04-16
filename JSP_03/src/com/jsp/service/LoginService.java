@@ -6,6 +6,6 @@ import com.jsp.vo.MemberVO;
 
 public interface LoginService {
 	
-	public List<MemberVO> loginMember(MemberVO mv);
+	public MemberVO loginMember(MemberVO mv);
 
 }
