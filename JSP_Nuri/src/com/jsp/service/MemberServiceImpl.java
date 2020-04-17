@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 		return instance;
 	}
 	
-	private MemberDAO memberDAO=MemberDAOImpl.getInstance();
+	private MemberDAO memberDAO;//=MemberDAOImpl.getInstance();
 	
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO=memberDAO;
