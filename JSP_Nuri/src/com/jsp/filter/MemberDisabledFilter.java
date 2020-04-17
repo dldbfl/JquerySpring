@@ -52,9 +52,9 @@ public class MemberDisabledFilter implements Filter {
 					return;
 				}					
 			}
-		}else {
+		}
 			chain.doFilter(request, response);		
-		}			
+				
 	}
 	
 	

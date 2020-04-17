@@ -25,7 +25,7 @@ public class InitListener implements ServletContextListener {
     	//sql세션을 dao에 넣고 dao를 서비스에 넣어줘야 끝나
     	String sqlSessionFactoryType = ctxEvent.getServletContext().getInitParameter("sqlSessionFactory");
     	String memberDAOType = ctxEvent.getServletContext().getInitParameter("memberDAO");
-    	 
+    	
     	try {
     		
     	SqlSessionFactory sqlSessionFactory = (SqlSessionFactory)Class.forName(sqlSessionFactoryType).newInstance();

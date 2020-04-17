@@ -1,7 +1,5 @@
 package com.jsp.request;
 
-import java.util.Arrays;
-
 import com.jsp.dto.MemberVO;
 
 public class MemberModifyRequest {

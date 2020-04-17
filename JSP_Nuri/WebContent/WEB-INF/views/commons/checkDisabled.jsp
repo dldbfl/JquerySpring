@@ -3,12 +3,17 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <script>
-	if(window.opener){
-		alert("세션이 만료되었습니다. \n다시 로그인하시기 바랍니다.!");	
+	<%-- if(window.opener){
+		alert("정지 당한 유저입니다.");	
 		window.close();
+		
 		window.opener.location.href="<%=request.getContextPath()%>/commons/login";
 	}else{
-		alert("세션이 만료되었습니다. \n다시 로그인하시기 바랍니다.!");
+		alert("정지 당한 유저입니다.");
 		location.href="<%=request.getContextPath()%>/commons/login";
-	}
+		
+	} --%>
+	alert("정지된 계정입니다. \n 사용제한으로 불가합니다.");
+	history.go(-1);
+	
 </script>   

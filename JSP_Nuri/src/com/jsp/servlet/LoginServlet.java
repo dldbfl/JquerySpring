@@ -49,8 +49,9 @@ public class LoginServlet extends HttpServlet {
 			
 			MemberVO loginUser=MemberServiceImpl.getInstance().getMember(id);
 			if(loginUser.getEnabled()==0) {
-				url="commons/loginForm";
+				session.setAttribute("loginUser", loginUser);
 				request.setAttribute("msg", "비활성화된 유저에요.");
+				session.setMaxInactiveInterval(100*1); // 세션 유지시간
 			}else {
 				session.setAttribute("loginUser", loginUser);
 				session.setMaxInactiveInterval(100*1); // 세션 유지시간

@@ -15,7 +15,6 @@ import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.ViewResolver;
 
-
 @WebServlet("/member/list")
 public class MemberListServlet extends HttpServlet {
 
