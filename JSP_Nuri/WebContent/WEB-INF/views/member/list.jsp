@@ -29,6 +29,104 @@
 		.btn-primary {
 		margin-right: 11px;
 		}
+		
+		@import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+		.rwd-table {
+		  margin: 1em 0;
+		  min-width: 300px;
+		  
+		}
+		.rwd-table tr {
+		  border-top: 1px solid #ddd;
+		  border-bottom: 1px solid #ddd; 
+		}
+		.rwd-table th {
+		  display: none;
+		}
+		.rwd-table td {
+		  display: block;
+		}
+		.rwd-table td:first-child {
+		  padding-top: .5em;
+		}
+		.rwd-table td:last-child {
+		  padding-bottom: .5em;
+		}
+		.rwd-table td:before {
+		  content: attr(data-th) ": ";
+		  font-weight: bold;
+		  width: 6.5em;
+		  display: inline-block;
+		}
+		@media (min-width: 480px) {
+		  .rwd-table td:before {
+		    display: none;
+		  }
+		}
+		.rwd-table th,
+		.rwd-table td {
+		  text-align: left;
+		}
+		@media (min-width: 480px) {
+		  .rwd-table th,
+		  .rwd-table td {
+		    display: table-cell;
+		    padding: .25em .5em;
+		  }
+		  .rwd-table th:first-child,
+		  .rwd-table td:first-child {
+		    padding-left: 0;
+		  }
+		  .rwd-table th:last-child,
+		  .rwd-table td:last-child {
+		    padding-right: 0;
+		  }
+		}
+		
+		body {
+		  /* padding: 0 2em; */
+		  font-family: sans-serif;
+		  color: #444;
+		  background: #eee;
+		}
+		
+		h1 {
+		  font-weight: normal;
+		  letter-spacing: -1px;
+		  color: #34495E;
+		}
+		
+		.rwd-table {
+		  /* background: mintcream; */
+		  /* color: #fff; */
+		  /* border-radius: .4em; */
+		  overflow: hidden;
+		}
+		.rwd-table tr {
+		  border-color: #46637f;
+		}
+		.rwd-table th,
+		.rwd-table td {
+		  margin: .5em 1em;
+		}
+		@media (min-width: 480px) {
+		  .rwd-table th,
+		  .rwd-table td {
+		    padding: 1em !important;
+		  }
+		}
+		.rwd-table th,
+		.rwd-table td:before {
+		  color: black;
+		}
+		
+		
+		.card-body{
+			padding-top: 0em;
+			padding-left:1.25em;
+			padding-right:1.25em;
+			padding-bottom:0em;
+		}
 		</style>
 </head>
 <body>
@@ -88,8 +186,7 @@
     		<div class="card-body" style="text-align:center;">
     		  <div class="row">
 	             <div class="col-sm-12">
-	             <div class="table-responsive">	
-		    		<table class="table table-small-font table-bordered table-striped"> 
+	            	<table class="rwd-table"> 
 	             		<tr>	
 	             			<th>ID</th>
 	             			<th>NAME</th>
@@ -102,11 +199,11 @@
              			
              				<c:forEach var="member" items="${memberList }">
              					<tr>	
-			             			<td><a href="javascript:OpenWindow('detail?id=${member.id}','회원상세보기','800','600');">${member.id }</a></td>
-			             			<td>${member.name}</td>
-			             			<td>${member.pwd}</td>
-			             			<td>${member.email}</td>
-			             			<td>${member.phone}</td>
+			             			<td data-th="ID"><a href="javascript:OpenWindow('detail?id=${member.id}','회원상세보기','800','600');">${member.id }</a></td>
+			             			<td data-th="NAME">${member.name}</td>
+			             			<td data-th="PASSWORD">${member.pwd}</td>
+			             			<td data-th="E-MAIL">${member.email}</td>
+			             			<td data-th="PHONE">${member.phone}</td>
 			             		</tr>
 		             		</c:forEach>
 		              	</c:if>
@@ -117,7 +214,7 @@
 	             		</tr>	
              			 </c:if>
 				 	</table>
-				 </div>	
+				 	
             	</div>
            	</div>            
        	  </div>   

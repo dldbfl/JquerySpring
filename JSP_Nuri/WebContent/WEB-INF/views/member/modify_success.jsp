@@ -4,5 +4,5 @@
 
 <script>
 	location.href="detail?id=${id}";
-	window.location.href.reload(true);
+	window.opener.location.reload(true);
 </script>	
