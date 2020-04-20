@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebListener;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.jsp.dao.BoardDAO;
 import com.jsp.dao.MemberDAO;
+import com.jsp.service.BoardServiceImpl;
 import com.jsp.service.MemberServiceImpl;
 
 @WebListener
@@ -25,6 +27,7 @@ public class InitListener implements ServletContextListener {
     	//sql세션을 dao에 넣고 dao를 서비스에 넣어줘야 끝나
     	String sqlSessionFactoryType = ctxEvent.getServletContext().getInitParameter("sqlSessionFactory");
     	String memberDAOType = ctxEvent.getServletContext().getInitParameter("memberDAO");
+    	String boardDAOType = ctxEvent.getServletContext().getInitParameter("boardDAO");
     	
     	try {
     		
@@ -41,6 +44,17 @@ public class InitListener implements ServletContextListener {
     	    	
     	MemberServiceImpl.getInstance().setMemberDAO(memberDAO);
     	
+
+    	Class<?> cls2 = Class.forName(boardDAOType);
+    	
+    	setSqlSessionFactory = cls2.getMethod("setSessionFactory", SqlSessionFactory.class);
+     	
+    	Object obj2 = cls2.newInstance();
+    	setSqlSessionFactory.invoke(obj2, sqlSessionFactory);
+    	
+    	BoardDAO boardDAO= (BoardDAO)obj2;
+    	
+    	BoardServiceImpl.getInstance().setBoardDAO(boardDAO);
     	}catch(Exception e) {
     		e.printStackTrace();
     	}

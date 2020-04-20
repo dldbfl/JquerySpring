@@ -16,16 +16,16 @@ import com.jsp.service.MemberServiceImpl;
 
 public class MemberListAction implements Action {
 	
-	private BoardService boardService;// = new BoardServiceImpl.getInstance();
-	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
+	private MemberService memberService;// = new BoardServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 	
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-String url="member/list";		
+		String url="member/list";		
 		
 		SearchCriteria cri = new SearchCriteria();
 		

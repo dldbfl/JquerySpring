@@ -3,6 +3,7 @@ package com.jsp.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -19,34 +20,45 @@ public class BoardDAOImpl implements BoardDAO {
 			public void setSessionFactory(SqlSessionFactory sessionFactory) {
 				this.sessionFactory = sessionFactory;
 			}	
+			
+	
 	
 	@Override
 	public BoardVO selectBoardByBno(int bno) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session=sessionFactory.openSession();
+		BoardVO board=session.selectOne("Board-Mapper.selectBoardByBno",bno);
+		session.close();
+		return board;
 	}
 
 	@Override
 	public void insertBoard(BoardVO board) throws SQLException {
-		// TODO Auto-generated method stub
-
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Board-Mapper.insertBoard",board);
+		session.close();
 	}
+	//openSession()에 true주면 커밋!
 
 	@Override
 	public void updateBoard(BoardVO board) throws SQLException {
-		// TODO Auto-generated method stub
-
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Board-Mapper.updateBoard",board);
+		session.close();	
 	}
 
 	@Override
 	public void deleteBoard(int bno) throws SQLException {
-		// TODO Auto-generated method stub
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Board-Mapper.deleteBoard",bno);
+		session.close();
 
 	}
 
 	@Override
 	public void increaseViewCnt(int bno) throws SQLException {
-		// TODO Auto-generated method stub
+		SqlSession session=sessionFactory.openSession(true);
+		session.update("Board-Mapper.increaseViewCnt",bno);
+		session.close();
 
 	}
 
@@ -59,15 +71,28 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> selectBoardCriteria(SearchCriteria cri) throws SQLException {
 		SqlSession session = sessionFactory.openSession();
-		List<MemberVO> memberList = session.selectList("Member-Mapper.selectBoardCriteria",null);
+
+		int offset = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<BoardVO> boardList = null;
+		
+		boardList = session.selectList("Board-Mapper.selectBoardCriteria", cri, rowBounds);
+		
 		session.close();
-		return null;
+		return boardList;
 	}
 
 	@Override
 	public int selectBoardCriteriaTotalCount(SearchCriteria cri) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=0;
+		SqlSession session = sessionFactory.openSession(true);
+		count= session.selectOne("Board-Mapper.selectBoardCriteriaTotalCount",cri);
+		
+		session.close();
+		
+		return count;
 	}
 
 }
