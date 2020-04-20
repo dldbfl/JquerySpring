@@ -171,14 +171,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<%=request.getContextPath()%>/member/picture/get?picture=${loginUser.picture}" 
+          <img src="<%=request.getContextPath()%>/member/picture/get.do?picture=${loginUser.picture}" 
           onerror="this.src='<%=request.getContextPath() %>/resources/bootstrap/dist/img/avatar.png'" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <div class="row">
           	<a class="col-md-8" href="">${loginUser.id }</a>
           	<button class="btn btn-xs btn-primary col-xs-3 " type="button" 
-          		onclick="location.href='<%=request.getContextPath() %>/commons/logout';" >Logout</button>
+          		onclick="location.href='<%=request.getContextPath() %>/commons/logout.do';" >Logout</button>
           </div>
           <a href="tel:${loginUser.phone }">tel : ${loginUser.phone }</a><br/>
           <a href="mailto:${loginUser.email }">email : ${loginUser.email }</a>			          

@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jsp.dispatcher.ViewResolver;
 import com.jsp.dto.MemberVO;
-import com.jsp.utils.ViewResolver;
 
 
 public class LoginCheckFilter implements Filter {
@@ -50,10 +50,10 @@ public class LoginCheckFilter implements Filter {
 		if(loginUser==null) { //비로그인 상태
 			String url="commons/loginCheck";
 			System.out.println("요청 Url = " + "'"+reqUrl+"'" );
-			if("/".equals(reqUrl)) {
+			/*if("/".equals(reqUrl)) {
 				url="redirect:commons/login";
 				//index.jsp는 안걸린다.
-			}
+			}*/
 			ViewResolver.view(httpReq, httpResp, url);
 		}else {
 			chain.doFilter(request, response);			

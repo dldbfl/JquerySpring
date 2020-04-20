@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
- <jsp:forward page="/commons/login"></jsp:forward> 
+ <jsp:forward page="/commons/login.do"></jsp:forward> 
 <%-- <%@ include file="WEB-INF/views/commons/loginForm.jsp" %>  --%>

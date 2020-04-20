@@ -9,6 +9,13 @@
 			where id = #{id}		
 		</select>
 		
+		<select id="selectBoardByBno" parameterType="int" resultType="board">
+			select 
+			*
+			from board
+			where bno = #{bno}		
+		</select>
+				
 		<sql id = "search">
 			<if test ="searchType =='i'.toString()">
 				and id like '%'||#{keyword}||'%'
@@ -19,6 +26,31 @@
 			<if test ="searchType =='e'.toString()">
 				and email like '%'||#{keyword}||'%'
 			</if>
+			
+			
+			<if test ="searchType =='tcw'.toString()">
+				and title like '%'||#{keyword}||'%'
+				or content like '%'||#{keyword}||'%'
+				or writer like '%'||#{keyword}||'%'
+			</if>
+			<if test ="searchType =='t'.toString()">
+				and title like '%'||#{keyword}||'%'
+			</if>
+			<if test ="searchType =='w'.toString()">
+				and writer like '%'||#{keyword}||'%'
+			</if>
+			<if test ="searchType =='c'.toString()">
+				and content like '%'||#{keyword}||'%'
+			</if>
+			<if test ="searchType =='tc'.toString()">
+				and title like '%'||#{keyword}||'%'
+				or content like '%'||#{keyword}||'%'
+			</if>
+			<if test ="searchType =='cw'.toString()">
+				and content like '%'||#{keyword}||'%'
+				or writer like '%'||#{keyword}||'%'
+			</if>
+			
 		</sql>
 		
 		
@@ -30,11 +62,28 @@
 			order by regDate desc
 		</select>
 		
+		<select id="selectBoardCriteria" resultType="board">
+			select *
+			from board
+			where writer is not null
+			<include refid="search" />
+			order by regDate desc
+		</select>
+			
 		
 		<select id="selectSearchMemberListCount" resultType="int">
 			select 
 			count(*)
 			from member
+			where id is not null
+			<include refid="search"/>
+			order by regDate desc			
+		</select>
+		
+		<select id="selectBoardCriteriaTotalCount" resultType="int">
+			select 
+			count(*)
+			from board
 			where id is not null
 			<include refid="search"/>
 			order by regDate desc			
@@ -45,10 +94,21 @@
 			from member
 		</select>
 		
+		<select id="selectBoardListCount" resultType="int">
+			select count(*)
+			from board
+		</select>
+		
 		<update id="insertMember" parameterType="member">
 			insert into
 			member(id, pwd, email, phone, picture, name)
 			values(#{id},#{pwd},#{email},#{phone},#{picture},#{name})
+		</update>	
+		
+		<update id="insertBoard" parameterType="board">
+			insert into
+			board(bno, title, writer, content, viewcnt, regDate)
+			values(#{bno},#{title},#{writer},#{content},sysdate)
 		</update>	
 		
 		<update id="updateMember" parameterType="member">
@@ -64,10 +124,23 @@
 			where id=#{id}
 		</update>
 		
+		<update id="updateBoard" parameterType="board">
+				update board 
+				set 
+				title=#{title},content=#{content},viewcnt=viewcnt.nextval,updatedate=sysdate,
+				where bno=#{bno}
+		</update>
+		
 		<update id="deleteMember" parameterType="str">
 			delete 
 			from Member
 			where id = #{id}
+		</update>
+		
+		<update id="deleteBoard" parameterType="str">
+			delete 
+			from Board
+			where bno = #{bno}
 		</update>
 		
 		<update id="disabledMember">
@@ -81,5 +154,8 @@
 			set enabled=1
 			where id = #{id}
 		</update>
+		
+		
+		
 
 </mapper>

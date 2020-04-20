@@ -4,7 +4,7 @@
 
 <script>
 	alert("수정 완료")
-	location.href="detail?id=${id}";
+	location.href="detail.do?id=${id}";
 	window.opener.location.reload(true);
 </script>
 

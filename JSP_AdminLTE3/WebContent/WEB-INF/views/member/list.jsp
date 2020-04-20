@@ -22,7 +22,7 @@
 		  			<div class="col-sm-6">
 		  				<ol class="breadcrumb float-sm-right">
 					        <li class="breadcrumb-item">
-					        	<a href="lis">
+					        	<a href="list.do">
 						        	<i class="fa fa-dashboard"></i> 회원관리
 						        </a>
 					        </li>
@@ -40,7 +40,7 @@
     	  	<div class="card-header with-border">
     	  		<c:if test="${loginUser.authority eq 'ROLE_ADMIN' }" >
     	  			<button type="button" class="btn btn-primary" 
-    	  			onclick="OpenWindow('regist','회원등록',800,600);" >회원등록</button>
+    	  			onclick="OpenWindow('registForm.do','회원등록',800,600);" >회원등록</button>
     	  		</c:if>
     	  		<div id="keyword" class="card-tools" style="width:350px;">
 				  <div class="input-group row">		
@@ -95,7 +95,7 @@
 		       					%>
 		       				  --%>
 		       					<tr>	
-			             			<td><a href="javascript:OpenWindow('detail?id=${member.id}','회원상세보기','800','600');">${member.id }</a></td>
+			             			<td><a href="javascript:OpenWindow('detail.do?id=${member.id}','회원상세보기','800','600');">${member.id }</a></td>
 			             			<td>${member.name}</td>
 			             			<td>${member.pwd}</td>
 			             			<td>${member.email}</td>
