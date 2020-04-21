@@ -5,11 +5,21 @@
     <param-value>com.jsp.dao.MemberDAOImpl</param-value>
   </context-param>
   <context-param>
+    <param-name>boardDAO</param-name>
+    <param-value>com.jsp.dao.BoardDAOImpl</param-value>
+  </context-param>
+    <context-param>
+    <param-name>replyDAO</param-name>
+    <param-value>com.jsp.dao.ReplyDAOImpl</param-value>
+  </context-param>
+  
+  
+  <context-param>
     <param-name>sqlSessionFactory</param-name>
     <param-value>com.jsp.mybatis.OracleMyBatisSqlSessionFactory</param-value>
   </context-param>
   <listener>
-    <listener-class>com.jsp.listener.InitListener</listener-class>
+    <listener-class>com.jsp.listener.InitBeanListener</listener-class>
   </listener>
   <servlet>
   	<servlet-name>FrontServlet</servlet-name>

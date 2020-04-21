@@ -47,7 +47,7 @@ public class LoginAction implements Action {
 				session.setMaxInactiveInterval(100*1); // 세션 유지시간
 			}else {
 				session.setAttribute("loginUser", loginUser);
-				session.setMaxInactiveInterval(100*1); // 세션 유지시간
+				session.setMaxInactiveInterval(500*1); // 세션 유지시간
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,8 +56,9 @@ public class LoginAction implements Action {
 			
 		} catch (NotFoundIDException | InvalidPasswordException | NullidException | NullpasswordException e) {
 			e.printStackTrace();
-			url="redirect:/commons/loginForm.do";
 			request.setAttribute("msg", e.getMessage());
+			url="redirect:/commons/loginForm.do";
+			//url="commons/loginForm";
 		}
 				
 		return url;

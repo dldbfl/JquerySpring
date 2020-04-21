@@ -64,8 +64,11 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int selectBoardSeqNext() throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		int bno = 0;
+		SqlSession session = sessionFactory.openSession(true);
+		bno= session.selectOne("Board-Mapper.selectBoardSeqNext");
+		session.close();
+		return bno;
 	}
 
 	@Override

@@ -12,10 +12,11 @@ import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.BoardServiceImpl;
 
 public class BoardModifyFormAction implements Action {
-	
-	private BoardService boardService; // = BoardServiceImpl.getInstance();
+
+	private BoardService boardService = BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -26,6 +27,7 @@ public class BoardModifyFormAction implements Action {
 		
 		String url = "board/ModifyBoard";
 
+		
 		try {
 			int bno = Integer.parseInt(request.getParameter("bno"));
 			

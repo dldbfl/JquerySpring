@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebListener;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.jsp.dao.BoardDAO;
+import com.jsp.dao.BoardDAOImpl;
 import com.jsp.dao.MemberDAO;
+import com.jsp.dao.MemberDAOImpl;
 import com.jsp.service.BoardServiceImpl;
 import com.jsp.service.MemberServiceImpl;
 
@@ -32,29 +34,37 @@ public class InitListener implements ServletContextListener {
     	try {
     		
     	SqlSessionFactory sqlSessionFactory = (SqlSessionFactory)Class.forName(sqlSessionFactoryType).newInstance();
+    	MemberDAOImpl memberDaoImpl = (MemberDAOImpl) Class.forName(memberDAOType).newInstance();
+    	BoardDAOImpl boardDaoImpl = (BoardDAOImpl) Class.forName(boardDAOType).newInstance();
     	
-    	Class<?> cls = Class.forName(memberDAOType);
+//    	Class<?> cls = Class.forName(memberDAOType);
+//    	
+//    	Method setSqlSessionFactory = cls.getMethod("setSessionFactory", SqlSessionFactory.class);
+//   
+//    	Object obj = cls.newInstance();
+//    	setSqlSessionFactory.invoke(obj, sqlSessionFactory);
     	
-    	Method setSqlSessionFactory = cls.getMethod("setSessionFactory", SqlSessionFactory.class);
-   
-    	Object obj = cls.newInstance();
-    	setSqlSessionFactory.invoke(obj, sqlSessionFactory);
+//    	MemberDAO memberDAO = (MemberDAO)obj;
+    
     	
-    	MemberDAO memberDAO = (MemberDAO)obj;
-    	    	
-    	MemberServiceImpl.getInstance().setMemberDAO(memberDAO);
+    	memberDaoImpl.setSessionFactory(sqlSessionFactory);
+    	boardDaoImpl.setSessionFactory(sqlSessionFactory);
+    	MemberServiceImpl.getInstance().setMemberDAO(memberDaoImpl);
     	
 
-    	Class<?> cls2 = Class.forName(boardDAOType);
+//    	Class<?> cls2 = Class.forName(boardDAOType);
+//    	
+//    	setSqlSessionFactory = cls2.getMethod("setSessionFactory", SqlSessionFactory.class);
+//     	
+//    	Object obj2 = cls2.newInstance();
+//    	setSqlSessionFactory.invoke(obj2, sqlSessionFactory);
+//    	
+//    	BoardDAO boardDAO= (BoardDAO)obj2;
     	
-    	setSqlSessionFactory = cls2.getMethod("setSessionFactory", SqlSessionFactory.class);
-     	
-    	Object obj2 = cls2.newInstance();
-    	setSqlSessionFactory.invoke(obj2, sqlSessionFactory);
+    	BoardServiceImpl.getInstance().setBoardDAO(boardDaoImpl);
     	
-    	BoardDAO boardDAO= (BoardDAO)obj2;
     	
-    	BoardServiceImpl.getInstance().setBoardDAO(boardDAO);
+    	
     	}catch(Exception e) {
     		e.printStackTrace();
     	}

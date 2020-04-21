@@ -3,7 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <script>
-	alert("${param.id} 님을 삭제합니다.");
+	alert("삭제가 성공하였습니다.");
 	window.close();
 	window.opener.location.reload(true);
 </script>

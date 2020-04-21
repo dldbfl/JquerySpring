@@ -12,10 +12,11 @@ import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.BoardServiceImpl;
 
 public class BoardDetailAction implements Action {
 	
-	private BoardService boardService;// = new BoardServiceImpl.getInstance();
+	private BoardService boardService = BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -31,7 +32,7 @@ public class BoardDetailAction implements Action {
 		BoardVO board;
 		try {
 			board = boardService.getBoard(bno);
-			request.setAttribute("baord", board);
+			request.setAttribute("board", board);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			url="error/500_error";

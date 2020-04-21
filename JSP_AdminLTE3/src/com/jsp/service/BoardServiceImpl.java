@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jsp.dao.BoardDAO;
+import com.jsp.dao.ReplyDAO;
 import com.jsp.dto.BoardVO;
 import com.jsp.request.PageMaker;
 import com.jsp.request.SearchCriteria;
@@ -55,6 +56,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void write(BoardVO board) throws SQLException {
+		int bno = boardDAO.selectBoardSeqNext();
+		board.setBno(bno);
 		boardDAO.insertBoard(board);
 
 	}
@@ -70,5 +73,9 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.deleteBoard(bno);
 
 	}
+	
+	
+	
+
 
 }

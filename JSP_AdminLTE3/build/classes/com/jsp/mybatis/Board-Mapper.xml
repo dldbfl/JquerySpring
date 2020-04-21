@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	<mapper namespace="Member-Mapper"> <!--같은이름이 있을때 패키지 위치까지 적어준다.  -->
+	<mapper namespace="Board-Mapper"> <!--같은이름이 있을때 패키지 위치까지 적어준다.  -->
 		
 		<select id="selectBoardByBno" parameterType="int" resultType="board">
 			select 
@@ -38,9 +38,9 @@
 		<select id="selectBoardCriteria" resultType="board">
 			select *
 			from board
-			where writer is not null
+			where bno is not null
 			<include refid="searchBoard" />
-			order by regDate desc
+			order by bno desc
 		</select>
 			
 		
@@ -48,7 +48,7 @@
 			select 
 			count(*)
 			from board
-			where id is not null
+			where bno is not null
 			<include refid="searchBoard"/>
 			order by regDate desc			
 		</select>
@@ -61,14 +61,14 @@
 		<update id="insertBoard" parameterType="board">
 			insert into
 			board(bno, title, writer, content, regDate)
-			values(bno.nextval,#{title},#{writer},#{content},sysdate)
+			values(#{bno},#{title},#{writer},#{content},sysdate)
 		</update>	
 		
 		<update id="updateBoard" parameterType="board">
 			update board 
 			set 
-			title=#{title},content=#{content},updatedate=sysdate,
-			where bno=#{bno}
+			title=#{title},content=#{content},updatedate=sysdate
+			where bno = #{bno}
 		</update>
 		
 		<update id="deleteBoard" parameterType="int">
@@ -80,13 +80,13 @@
 		<update id="increaseViewCnt" parameterType="int">
 			update board 
 			set 
-			viewcnt=viewcnt.nextval
+			viewcnt=viewcnt+1
 			where bno=#{bno}
 		</update>
 		
 		<select id="selectBoardSeqNext" resultType="int">
-			select bno.nextval
-			from board
+			select BOARD_SEQ.nextval
+			from dual
 		</select>
 		
 </mapper>
