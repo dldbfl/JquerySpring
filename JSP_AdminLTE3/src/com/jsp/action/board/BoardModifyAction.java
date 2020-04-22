@@ -23,7 +23,7 @@ import com.jsp.utils.GetUploadPath;
 
 public class BoardModifyAction implements Action {
 	
-	private BoardService boardService = BoardServiceImpl.getInstance();
+	private BoardService boardService;// = BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -47,7 +47,7 @@ public class BoardModifyAction implements Action {
 		System.out.println(board);
 		
 		try {
-			BoardServiceImpl.getInstance().modify(board);		
+			boardService.modify(board);		
 
 		} catch (SQLException e) {		
 			e.printStackTrace();

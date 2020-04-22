@@ -20,7 +20,7 @@ import com.jsp.service.MemberServiceImpl;
 
 public class BoardRegistAction implements Action {
 	
-	private BoardService boardService = BoardServiceImpl.getInstance();
+	private BoardService boardService;// = BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -41,7 +41,7 @@ public class BoardRegistAction implements Action {
 	      BoardVO board = boardReq.toBoardVO();
 	      
 	      	try {
-				BoardServiceImpl.getInstance().write(board);;
+	      		boardService.write(board);;
 			} catch (SQLException e) {
 				e.printStackTrace();
 				url="board/regist_fail";

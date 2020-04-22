@@ -19,6 +19,12 @@ import com.jsp.service.MemberServiceImpl;
 
 public class BoardRemoveAction implements Action {
 	
+	private BoardService boardService;// = BoardServiceImpl.getInstance();
+	public void setBoardService(BoardService boardService) {
+		this.boardService = boardService;
+	}
+	
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -27,7 +33,7 @@ public class BoardRemoveAction implements Action {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 
 		try {
-				BoardServiceImpl.getInstance().remove(bno);
+				boardService.remove(bno);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

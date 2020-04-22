@@ -14,13 +14,14 @@ import com.jsp.dto.BoardVO;
 import com.jsp.dto.MemberVO;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 
 public class MemberDetailAction implements Action {
 	
-	private BoardService boardService;// = new BoardServiceImpl.getInstance();
-	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
+	private MemberService memberService;// = new BoardServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 	
 
@@ -37,7 +38,7 @@ public class MemberDetailAction implements Action {
 				MemberVO member =null;
 				//서비스 요청 - 결과
 				try {
-					member = MemberServiceImpl.getInstance().getMember(id);
+					member = memberService.getMember(id);
 					
 				} catch (SQLException e) {
 					url="error/500_error";

@@ -17,14 +17,15 @@ import com.jsp.dto.MemberVO;
 import com.jsp.request.MemberRegistRequest;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.GetUploadPath;
 
 public class MemberModifyFormAction implements Action {
 	
-	private BoardService boardService; // = BoardServiceImpl.getInstance();
-	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
+	private MemberService memberService;// = new BoardServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 	
 	@Override
@@ -35,7 +36,7 @@ public class MemberModifyFormAction implements Action {
 		String id=request.getParameter("id");		
 		MemberVO member=null;
 		try {
-			member=MemberServiceImpl.getInstance().getMember(id);
+			member=memberService.getMember(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

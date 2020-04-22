@@ -14,10 +14,15 @@ import com.jsp.dto.BoardVO;
 import com.jsp.dto.MemberVO;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 
 public class MemberRemoveAction implements Action {
 	
+	private MemberService memberService;// = new BoardServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,7 +37,7 @@ public class MemberRemoveAction implements Action {
 			url = "member/remove_denied";
 		}else {
 			try {
-				MemberServiceImpl.getInstance().remove(id);
+				memberService.remove(id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				url = "member/remove_fail";

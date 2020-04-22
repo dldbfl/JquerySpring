@@ -16,7 +16,7 @@ import com.jsp.service.BoardServiceImpl;
 
 public class BoardDetailAction implements Action {
 	
-	private BoardService boardService = BoardServiceImpl.getInstance();
+	private BoardService boardService;// = BoardServiceImpl.getInstance();
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -28,11 +28,23 @@ public class BoardDetailAction implements Action {
 		String url = "board/detailBoard";
 
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		String state = request.getParameter("state");
+		
 		
 		BoardVO board;
+		
+		System.out.println(state);
+		
 		try {
-			board = boardService.getBoard(bno);
-			request.setAttribute("board", board);
+			
+			if(state.equals("modify")) {
+				board = boardService.getBoardForModify(bno);
+				request.setAttribute("board", board);
+			}else {
+				board = boardService.getBoard(bno);
+				request.setAttribute("board", board);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			url="error/500_error";

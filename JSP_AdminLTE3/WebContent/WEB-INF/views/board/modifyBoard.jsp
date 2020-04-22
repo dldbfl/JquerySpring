@@ -71,7 +71,7 @@
 <%@ include file="/WEB-INF/views/commons/summernote.jsp" %>
 <%-- <script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script> --%>
 <script>
-
+	window.opener.location.reload(true);
 
 	$(function(){
 		$('#content').summernote({
@@ -95,6 +95,8 @@
 	$('#cancelBtn').on('click',function(e){
 		history.go(-1);
 	});
+	
+	
 </script>
 </body>
 

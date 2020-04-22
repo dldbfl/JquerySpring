@@ -75,8 +75,9 @@
 						<div class="timeline">
 							<!-- timeline time label -->
 							<div class="time-label" id="repliesDiv">
-								<span class="bg-green">Replies List </span>
+								<span class="bg-green">Replies List </span>							
 							</div>
+							
 						</div>
 						<div class='text-center'>
 							<ul id="pagination" class="pagination justify-content-center m-0">
@@ -136,10 +137,10 @@
   </div>
 </div>
 	
-	<jsp:include page="detailBoard_js.jsp"></jsp:include>
+	<jsp:include page="./detailBoard_js.jsp"></jsp:include>
 	
-	<%-- <%@ include file="reply_js.jsp" %> --%>
-	
+	<%@ include file="./reply_js.jsp" %>
+	<%@ include file= "/WEB-INF/views/pagination/pagination.jsp" %>
 		
 </body>
 

@@ -16,14 +16,15 @@ import com.jsp.dto.MemberVO;
 import com.jsp.request.MemberRegistRequest;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 import com.jsp.utils.GetUploadPath;
 
 public class MemberModifyAction implements Action {
 	
-	private BoardService boardService; // = BoardServiceImpl.getInstance();
-	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
+	private MemberService memberService;// = new BoardServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
 	}
 	
 	@Override
@@ -48,7 +49,7 @@ public class MemberModifyAction implements Action {
 		System.out.println(member);
 		
 		try {
-			MemberServiceImpl.getInstance().modify(member);		
+			memberService.modify(member);		
 
 			HttpSession session = request.getSession();
 			MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");

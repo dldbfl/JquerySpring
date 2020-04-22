@@ -14,9 +14,16 @@ import com.jsp.dto.BoardVO;
 import com.jsp.dto.MemberVO;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
+import com.jsp.service.MemberService;
 import com.jsp.service.MemberServiceImpl;
 
 public class MemberDisabledAction implements Action {
+	
+	private MemberService memberService;// = new BoardServiceImpl.getInstance();
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +40,7 @@ public class MemberDisabledAction implements Action {
 			url = "member/disabled_denied";
 		} else { //로그인 사용자가 아닐경우 실행.
 			try {
-				MemberServiceImpl.getInstance().disabled(id);
+				memberService.disabled(id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 				url = "member/disabled_fail";
