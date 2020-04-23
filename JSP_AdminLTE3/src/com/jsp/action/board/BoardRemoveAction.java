@@ -1,21 +1,15 @@
 package com.jsp.action.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.jsp.action.Action;
-import com.jsp.dto.BoardVO;
-import com.jsp.dto.MemberVO;
-import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
-import com.jsp.service.BoardServiceImpl;
-import com.jsp.service.MemberServiceImpl;
 
 public class BoardRemoveAction implements Action {
 	
@@ -28,7 +22,8 @@ public class BoardRemoveAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url="board/removeBoard_success";
+		
+		String url=null;
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
 
@@ -37,10 +32,22 @@ public class BoardRemoveAction implements Action {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
-				url = "board/removeBoard_fail";
+				url="error/500";
+				return url;
 			}
 		
-		return url;
+		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		out.println("<script>");
+		out.println("alert('삭제되었습니다');");
+		out.println("window.opener.location.reload(true);window.close();");
+		out.println("</script>");	
+		
+		
+		
+		
+		return null;
 	}
 
 }

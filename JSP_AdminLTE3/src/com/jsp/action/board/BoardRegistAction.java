@@ -1,6 +1,7 @@
 package com.jsp.action.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -10,13 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
-import com.jsp.dto.MemberVO;
-import com.jsp.request.BoardRequest;
-import com.jsp.request.MemberRegistRequest;
-import com.jsp.request.SearchCriteria;
+import com.jsp.request.RegistBoardRequest;
 import com.jsp.service.BoardService;
-import com.jsp.service.BoardServiceImpl;
-import com.jsp.service.MemberServiceImpl;
 
 public class BoardRegistAction implements Action {
 	
@@ -29,23 +25,28 @@ public class BoardRegistAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		  String   url        = "board/registBoard_success";
+			String url = null;
 		   
 		  String   title         = request.getParameter("title");
 		  String   writer        = request.getParameter("writer"); 
 		  String   content       = request.getParameter("content"); 
-		  int      bno			 = 0;
 		  
-	      BoardRequest boardReq = new BoardRequest(title, writer, content, bno);
-	    		  
-	      BoardVO board = boardReq.toBoardVO();
-	      
-	      	try {
-	      		boardService.write(board);;
+		  
+		  BoardVO board = new RegistBoardRequest(title, content, writer).toBoardVO();
+		  
+		  	try {
+		  		
+				boardService.write(board);
 			} catch (SQLException e) {
 				e.printStackTrace();
-				url="board/regist_fail";
-			}		
+			}
+		  	
+		  	response.setContentType("text/html;charset=utf-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("window.opener.location.href='list.do';window.close();");
+			out.println("</script>");
+		  			  	
 		return url;
 	}
 

@@ -88,6 +88,7 @@
 					<div class="card-footer">
 						<label for="newReplyWriter">Writer</label>
 						<input class="form-control" type="text" placeholder="USER ID" 
+							   type ="hidden"
 							   id="newReplyWriter" readonly value="${loginUser.id }"> 
 						<label for="newReplyText">Reply Text</label>
 						<input class="form-control" type="text"	placeholder="REPLY TEXT" 
@@ -140,7 +141,7 @@
 	<jsp:include page="./detailBoard_js.jsp"></jsp:include>
 	
 	<%@ include file="./reply_js.jsp" %>
-	<%@ include file= "/WEB-INF/views/pagination/pagination.jsp" %>
+	<%-- <%@ include file= "/WEB-INF/views/pagination/pagination.jsp" %> --%>
 		
 </body>
 

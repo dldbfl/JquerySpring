@@ -28,23 +28,15 @@ public class BoardDetailAction implements Action {
 		String url = "board/detailBoard";
 
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		String state = request.getParameter("state");
 		
 		
 		BoardVO board;
 		
-		System.out.println(state);
 		
 		try {
-			
-			if(state.equals("modify")) {
-				board = boardService.getBoardForModify(bno);
-				request.setAttribute("board", board);
-			}else {
 				board = boardService.getBoard(bno);
 				request.setAttribute("board", board);
-			}
-			
+						
 		} catch (SQLException e) {
 			e.printStackTrace();
 			url="error/500_error";
