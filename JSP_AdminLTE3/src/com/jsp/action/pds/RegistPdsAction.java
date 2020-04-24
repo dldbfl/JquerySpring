@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,13 +24,40 @@ public class RegistPdsAction implements Action{
 		this.pdsService = pdsService;
 	}
 	
+	
+	
+	//	업로드 파일 환경 설정
+	private static final int MEMORY_THRESHOLD = 1024 * 500;             //
+	private static final int MAX_FILE_SIZE    = 1024 * 1024 * 1;        //
+	private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 2;        //
+
+	
+	
+	
+	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url="null";
 		
 		
-		String fileName = request.getParameter("picture");
+		int pno;
+		String title;
+		String content;
+		String writer;
+		int viewcnt;
+		Date regDate;
+		Date updatedate;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		String fileName = multi.getParameter("picture");
 		String savedPath = GetUploadPath.getUploadPath("pds.upload");
 		
 		String filePath = savedPath+fileName;
