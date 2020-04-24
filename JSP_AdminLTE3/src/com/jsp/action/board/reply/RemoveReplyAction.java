@@ -3,6 +3,7 @@ package com.jsp.action.board.reply;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jsp.action.Action;
 import com.jsp.dto.ReplyVO;
+import com.jsp.request.DeleteReplyRequest;
 import com.jsp.request.ModifyReplyRequest;
+import com.jsp.request.PageMaker;
+import com.jsp.request.SearchCriteria;
 import com.jsp.service.ReplyService;
 
 public class RemoveReplyAction implements Action{
@@ -27,23 +31,34 @@ public class RemoveReplyAction implements Action{
 		
 		String url=null;
 		
-		/*ObjectMapper mapper=new ObjectMapper();		
-		ModifyReplyRequest replyReq 
-			= mapper.readValue(request.getReader(), ModifyReplyRequest.class);
-		int rno = replyReq.getRno();*/
+		ObjectMapper mapper=new ObjectMapper();		
+		DeleteReplyRequest removeReq 
+			= mapper.readValue(request.getReader(), DeleteReplyRequest.class);
+		/*int rno = removeReq.getRno();*/
 		
-		int rno= Integer.parseInt(request.getParameter("rno"));
-		
+	/*	int rno= Integer.parseInt(request.getParameter("rno")); */	
 		response.setContentType("text/plain;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		
 		try {
-			replyService.removeReply(rno);			
-			out.print("SUCCESS");
+			replyService.removeReply(removeReq.getRno());
+			
+			SearchCriteria cri = new SearchCriteria();
+			
+			Map<String, Object> dataMap = replyService.getReplyList(removeReq.getBno(), cri);
+			PageMaker pageMaker = (PageMaker)dataMap.get("pageMaker");
+			
+			int page = removeReq.getPage();
+			int realEndPage = pageMaker.getRealEndPage();
+			if(page > realEndPage) {
+				page = realEndPage;
+			}
+			
+			out.print("SUCCESS,"+page);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			out.print("FAIL");
+			out.print("FAIL,1");
 		}finally {
 			if(out!=null)out.close();
 		}

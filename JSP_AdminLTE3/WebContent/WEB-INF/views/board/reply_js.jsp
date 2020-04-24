@@ -118,6 +118,7 @@ $('#replyAddBtn').on('click',function(e){
 				$('#newReplyText').val("");
 			}else{
 				alert('댓글 등록이 취소되었습니다.');
+				window.location.reload(true);
 			}			
 		}
 	});
@@ -175,30 +176,33 @@ $('#replyDelBtn').on('click',function(event){
 	
 	var rno=$('.modal-title').text();
 	
-
 	var sendData={
-			rno:rno
-	}
+			bno:"${board.bno}",
+			rno:rno,
+			page:replyPage
+	};
 	
-
 	$.ajax({
-		url:"<%=request.getContextPath()%>/replies/remove.do?rno="+rno,
+		url:"<%=request.getContextPath()%>/replies/remove.do",
 		type:"post",
 		data:JSON.stringify(sendData),
-		success:function(result){
-			if(result=="SUCCESS"){
-				alert("삭제되었소..");			
-				getPage("<%=request.getContextPath()%>/replies/list.do?bno=${board.bno}&page="+replyPage);
-			}else{
-				alert("삭제가 실패했습니다.");
+		success:function(data){
+			var result = data.split(',');			
+			if(result[0]=="SUCCESS"){
+				alert("삭제되었습니다.");
+				getPage("<%=request.getContextPath()%>/replies/list.do?bno=${board.bno}&page="+result[1]);				
 			}
+		},
+		error:function(error){
+			alert('삭제 실패했습니다.');		
 		},
 		complete:function(){
 			$('#modifyModal').modal('hide');
-		}	
+		}
 	});	
 	
 });
+
 
 
 </script>

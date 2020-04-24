@@ -47,7 +47,7 @@ public class BoardModifyAction implements Action {
 		String keyword = request.getParameter("keyword");
 		
 		// 화면결정
-		String url = "redirect:board/detail.do?bno="+bno;	
+		String url = "redirect:detail.do?bno="+bno;	
 		
 		// url 파라메터를 String 으로 만들경우 한글깨짐방지
 		url += "&page=" + page + "&perPageNum=" + perPageNum + "&searchType=" 
