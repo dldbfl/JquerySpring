@@ -74,6 +74,7 @@
 		<servlet-name>FrontServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
 
 
 	<filter>
@@ -90,6 +91,10 @@
 		<filter-name>setCharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	
+	
 	<filter>
 		<filter-name>loginCheckFilter</filter-name>
 		<filter-class>com.jsp.filter.LoginCheckFilter</filter-class>
@@ -102,11 +107,19 @@
 			<param-value>com.jsp.dispatcher.ViewResolver</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
 	</filter>
 	<filter-mapping>
 		<filter-name>loginCheckFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	
+	
+	
+	
+	
 	<filter>
 		<filter-name>memberDisabledFilter</filter-name>
 		<filter-class>com.jsp.filter.MemberDisabledFilter</filter-class>
@@ -119,11 +132,17 @@
 			<param-value>com.jsp.dispatcher.ViewResolver</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
 	</filter>
 	<filter-mapping>
 		<filter-name>memberDisabledFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	
+	
+	
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>
@@ -134,6 +153,10 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	
+	
 
 
 </web-app>
