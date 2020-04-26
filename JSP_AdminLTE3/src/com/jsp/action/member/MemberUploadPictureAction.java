@@ -75,7 +75,7 @@ public class MemberUploadPictureAction implements Action {
 		upload.setSizeMax(MAX_REQUEST_SIZE);
 		
 		//실제 저장 경로를 설정.s
-		String uploadPath=GetUploadPath.getUploadPath("pds.upload");
+		String uploadPath=GetUploadPath.getUploadPath("member.picture.upload");
 		File file = new File(uploadPath);
 		if(!file.mkdirs()) {
 			System.out.println(uploadPath+"가 이미 존재하거나 실패했습니다.");
@@ -93,6 +93,8 @@ public class MemberUploadPictureAction implements Action {
 					fileName = MakeFileName.toUUIDFileName(".jpg", "");
 					String filePath = uploadPath + File.separator + fileName;
 					File storeFile = new File(filePath);
+					
+					System.out.println("item : "+ item);
 					
 					//local HDD에 저장.
 					item.write(storeFile);

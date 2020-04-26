@@ -1,4 +1,4 @@
-package com.jsp.action.board;
+package com.jsp.action.pds;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,35 +10,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
 import com.jsp.dto.BoardVO;
+import com.jsp.dto.PdsVO;
 import com.jsp.request.SearchCriteria;
 import com.jsp.service.BoardService;
 import com.jsp.service.BoardServiceImpl;
+import com.jsp.service.PdsService;
 
-public class BoardDetailAction implements Action {
+public class DetailPdsAction implements Action {
 	
-	private BoardService boardService;// = BoardServiceImpl.getInstance();
-	public void setBoardService(BoardService boardService) {
-		this.boardService = boardService;
+	private PdsService pdsService;// = BoardServiceImpl.getInstance();
+	public void setPdsService(PdsService pdsService) {
+		this.pdsService = pdsService;
 	}
 	
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = "board/detailBoard";
+		String url = "pds/detailPds";
 		String state=request.getParameter("state");
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		int pno = Integer.parseInt(request.getParameter("pno"));
 		
-		BoardVO board =new BoardVO();
+		PdsVO pds =new PdsVO();
 		
 		try {
-			if(state.equals("modify")) {
-				 board = boardService.getBoardForModify(bno);
-			}else if(state.equals("list")){
-				 board = boardService.getBoard(bno);
-			}
-			 
-			 request.setAttribute("board", board);
+			
+			pds = pdsService.read(pno);
+			request.setAttribute("pds", pds);
 						
 		} catch (SQLException e) {
 			e.printStackTrace();

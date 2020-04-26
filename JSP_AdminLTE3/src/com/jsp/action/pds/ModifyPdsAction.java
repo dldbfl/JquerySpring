@@ -1,18 +1,16 @@
 package com.jsp.action.pds;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,21 +25,24 @@ import com.jsp.dto.AttachVO;
 import com.jsp.dto.BoardVO;
 import com.jsp.dto.MemberVO;
 import com.jsp.dto.PdsVO;
-import com.jsp.request.RegistBoardRequest;
+import com.jsp.request.BoardRequest;
+import com.jsp.request.MemberRegistRequest;
+import com.jsp.request.ModifyBoardRequest;
+import com.jsp.request.SearchCriteria;
+import com.jsp.service.BoardService;
+import com.jsp.service.BoardServiceImpl;
+import com.jsp.service.MemberServiceImpl;
 import com.jsp.service.PdsService;
 import com.jsp.utils.GetUploadPath;
 import com.jsp.utils.MakeFileName;
-import com.jsp.utils.MakeLogForException;
 
-public class RegistPdsAction implements Action{
-	
+public class ModifyPdsAction implements Action {
+
 	private PdsService pdsService;
 	public void setPdsService(PdsService pdsService) {
 		this.pdsService = pdsService;
 	}
-	
-	
-	
+
 	//	업로드 파일 환경 설정
 	private static final int MEMORY_THRESHOLD = 1024 * 500;             //
 	private static final int MAX_FILE_SIZE    = 1024 * 1024 * 40;        //
@@ -50,40 +51,49 @@ public class RegistPdsAction implements Action{
 
 	PdsVO pdsVO = new PdsVO();
 	List<AttachVO> attachList = new ArrayList<AttachVO>();
-		
+	
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		String url=null;				
-		
-		  	try {
-		  		saveFile(request,response);
-				pdsService.regist(pdsVO);
-				System.out.println(pdsVO);
 				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
-		  	
-		  	response.setContentType("text/html;charset=utf-8");
-			PrintWriter out=response.getWriter();
+		String url = null;
+					
+		try {
 			
-			out.println("<script>");
-			out.println("alert(\"자료 등록이 정상적으로 완료 되었소\");");
-			out.println("window.opener.location.reload(true);");
-			out.println("window.close();");
-			out.println("</script>");
-		  			  	
+			saveFile(request,response);
 			
 			
+			
+			System.out.println(pdsVO);
+			pdsService.modify(pdsVO);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			url = "error/500_error";
+		}		
+		
+		// 화면결정
+		//url = "redirect:detail.do?pno="+pno;	
+				
+				
+
+		
+		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		
+		out.println("<script>");
+		out.println("alert(\"자료 수정이 정상적으로 완료 되었소\");");
+		out.println("window.opener.location.reload(true);");
+		out.println("window.close();");
+		out.println("</script>");
+				
 		return url;
 	}
-		
-		
-
+	
+	
 	private PdsVO saveFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 
 		//request 파잏 첨부 확인.
@@ -192,7 +202,13 @@ public class RegistPdsAction implements Action{
 					pdsVO.setContent(content);
 					break;	
 					
-
+					case "pno":	int pno = Integer.parseInt(item.getString("utf-8"));
+					pdsVO.setPno(pno);	
+					pdsVO.setAttachList(pdsService.getPds(pno).getAttachList());
+					break;
+					
+					
+									
 					}
 					
 				}
@@ -203,6 +219,8 @@ public class RegistPdsAction implements Action{
 	} catch(Exception e) {
 		e.printStackTrace(); //개발 중 에러 확인
 	}
+	
+		
 		
 		return pdsVO;
 		
@@ -215,7 +233,13 @@ public class RegistPdsAction implements Action{
 		
 		
 	}
+
 }
+
+
+
+
+
 
 
 

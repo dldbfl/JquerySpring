@@ -121,16 +121,16 @@
 	</form>
  
  	<script>
- 		('#searchBtn').on('click',function(e){
+ 		$('#searchBtn').on('click',function(e){
  			
  			var jobForm = $('#jobForm');
  			jobForm.find("[name='page']").val(1);
  			jobForm.find("[name='searchType']").val($('select[name="searchType"]').val());
  			jobForm.find("[name='keyword']").val($('input[name="keyword"]').val());
  			
- 			/* alert(jobForm.serialize());
+ 			/* alert(jobForm.serialize());  */
   			   jobForm.attr("action","list.do").attr("method","get");
- 			   jobForm.submit(); 	 */		
+ 			   jobForm.submit(); 		
  			
  		});
  	

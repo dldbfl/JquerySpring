@@ -63,7 +63,7 @@
 					    <button type="button" id="listBtn" class="btn btn-primary">CLOSE</button>
 					</div>									
 				</div><!-- end card -->				
-			</div><!-- end col-md-12 -->
+			</div><!-- end col-md-`2 -->
 		</div><!-- end row  -->
 		
 		<!-- reply component start --> 

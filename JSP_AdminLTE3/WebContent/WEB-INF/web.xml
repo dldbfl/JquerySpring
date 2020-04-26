@@ -106,7 +106,7 @@
 			<param-name>viewResolver</param-name>
 			<param-value>com.jsp.dispatcher.ViewResolver</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<!-- <load-on-startup>1</load-on-startup> -->
 		
 	</filter>
 	<filter-mapping>
@@ -131,7 +131,7 @@
 			<param-name>viewResolver</param-name>
 			<param-value>com.jsp.dispatcher.ViewResolver</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<!-- <load-on-startup>1</load-on-startup> -->
 		
 	</filter>
 	<filter-mapping>

@@ -44,6 +44,9 @@ public class BoardListAction implements Action {
 			cri.setKeyword(keyword);
 		}
 		
+
+				
+		
 		try {
 			Map<String,Object> dataMap=boardService.getBoardList(cri);
 			request.setAttribute("dataMap", dataMap);
