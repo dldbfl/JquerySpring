@@ -42,7 +42,7 @@
     <section class="content">
 		<div class="card">
 			<div class="card-header with-border">
-				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','자료등록',600,400)">자료등록</button>
+				<button type="button" class="btn btn-primary" id="registBtn" onclick="OpenWindow('registForm.do','자료등록',1000,700)">자료등록</button>
 				<div id="keyword" class="card-tools" style="width:350px;">	
 					<div class="input-group row">
 						
@@ -85,7 +85,7 @@
 							<td>${pds.pno }</td>
 							<td id="pdsTitle" style="text-align:left;max-width: 100%;
 							overflow: hidden; whith-space: nowrap; text-overflow: ellipsis;">
-							<a href= "javascript:OpenWindow('detail.do?pno=${pds.pno }','상세보기',600,400);">
+							<a href= "javascript:OpenWindow('detail.do?pno=${pds.pno }','상세보기',1000,700);">
 								<span class="col-sm-12">${pds.title }</span>
 							</a>
 						</td>

@@ -25,6 +25,8 @@ public class PdsServiceImpl implements PdsService {
 		this.attachDAO=attachDAO;
 	}
 	
+	int ano = 0;
+	
 	@Override
 	public Map<String, Object> getList(SearchCriteria cri) throws SQLException {
 		
@@ -62,7 +64,8 @@ public class PdsServiceImpl implements PdsService {
 	public void modify(PdsVO pds) throws SQLException {
 		pdsDAO.updatePds(pds);		
 		System.out.println(pds);
-		//attachDAO.deleteAllAttach(pds.getPno());
+		attachDAO.deleteAllAttach(pds.getPno());
+		attachDAO.deleteAttach(ano);
 		for(AttachVO attach:pds.getAttachList()) {
 			attach.setPno(pds.getPno());
 			attach.setAttacher(pds.getWriter());

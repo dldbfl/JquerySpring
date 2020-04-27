@@ -3,7 +3,9 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <script>
-	alert("삭제가 성공하였습니다.");
-	window.close();
-	window.opener.location.reload(true);
+	alert("자료 등록에 실패했소!")
+	hestory.go(-1);
 </script>
+
+  
+  

@@ -7,12 +7,9 @@
 	
 	var formObj = $("form[role='form']");
 
-	$('button#modifyBtn').on('click',function(evnet){
+	$("#modifyBtn").on("click",function(evnet){
 		//alert('modify btn click');
-		formObj.attr({
-			'action':'modifyForm.do',
-			'method':'post'
-		});
+		formObj.attr("action","modifyForm.do");
 		formObj.submit();
 	});
 	
