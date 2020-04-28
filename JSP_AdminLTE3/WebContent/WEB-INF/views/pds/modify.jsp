@@ -26,10 +26,10 @@
 						<form enctype="multipart/form-data" role="form" method="post" action="modify.do" name="modifyForm">
 							
 							<input type='hidden' name="pno" value="${pds.pno }" />
-							<input type='hidden' name='page' value="${param.page}">
-							<input type='hidden' name='perPageNum' value="${param.perPageNum}">
-							<input type='hidden' name='searchType' value="${param.searchType}">
-							<input type='hidden' name='keyword' value="${param.keyword}">
+							<input type='hidden' name='page' value="${pageMaker.cri.page}">
+							<input type='hidden' name='perPageNum' value="${pageMaker.cri.perPageNum}">
+							<input type='hidden' name='searchType' value="${pageMaker.cri.searchType}">
+							<input type='hidden' name='keyword' value="${pageMaker.cri.keyword}">
 							
 							<div class="form-group">
 								<label for="writer">작성자</label> 

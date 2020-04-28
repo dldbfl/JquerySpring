@@ -49,7 +49,7 @@ public class LoginAction implements Action {
 			
 		} catch (NotFoundIDException | InvalidPasswordException | NullidException | NullpasswordException e) {
 			//e.printStackTrace();
-			url="redirect:/commons/loginForm.do";
+			url="commons/loginForm.do";
 			request.setAttribute("msg", e.getMessage());
 		} 
 		

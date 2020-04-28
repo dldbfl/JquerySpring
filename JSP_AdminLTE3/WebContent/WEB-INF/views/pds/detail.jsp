@@ -98,6 +98,11 @@
   <!-- /.content-wrapper -->
    <form role="form">
   	<input type='hidden' name='pno' value ="${pds.pno}">  	
+  	<input type='hidden' name='page' value ="${pageMaker.cri.page}">  	
+  	<input type='hidden' name='perPageNum' value ="${pageMaker.cri.perPageNum}">  	
+  	<input type='hidden' name='searchType' value ="${pageMaker.cri.searchType}">  	
+  	<input type='hidden' name='keyword' value ="${pageMaker.cri.keyword}">  	
+  	
    </form>
   
    <%@ include file="./detail_js.jsp" %>

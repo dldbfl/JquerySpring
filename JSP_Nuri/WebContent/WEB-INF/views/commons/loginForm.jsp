@@ -22,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <style>
 body.login-page{
-	background-image:url('<%=request.getContextPath()%>/resources/images/wallpaper/sea.jpg');
+	background-image:url('<%=request.getContextPath()%>/resources/images/wallpaper/daejeon.png');
 	background-position:center;
 	background-size:cover;
 	background-repeat:no-repeat;
@@ -33,12 +33,12 @@ body.login-page{
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="#"><b style="color:white;">Admin Login</b></a>
+			<a href="#"><b style="color:white;"></b></a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="card">
 		 <div class="card-body login-card-body">
-			<p class="login-box-msg">Sign in to start your session</p>
+			<p class="login-box-msg"></p>
 
 			<form action="<%=request.getContextPath() %>/commons/login"	method="post">
 				<div class="form-group has-feedback">
@@ -76,6 +76,7 @@ body.login-page{
 
 		</div>
 		<!-- /.login-box-body -->
+		
 	  </div>	
 	</div>
 	<!-- /.login-box -->
