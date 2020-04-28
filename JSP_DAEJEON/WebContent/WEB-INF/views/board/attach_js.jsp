@@ -5,7 +5,7 @@
 <script>
 $('#addFileBtn').on('click',function(event){
 	
-	if($('input[name="uploadFile"]').length >=5){
+	if($('input[name="uploadFile"]').length >=3){
 		alert("파일추가는 5개까지만 가능합니다.");
 		return;
 	}

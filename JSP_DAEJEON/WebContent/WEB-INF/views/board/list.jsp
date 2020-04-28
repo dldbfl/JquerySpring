@@ -6,7 +6,7 @@
 
 
 <head>
-	<title>대전시&lt;자료게시판</title>
+	<title>대전시-자유게시판</title>
 	<style>
 		table th,td{
 			text-align:center;
@@ -24,14 +24,13 @@
     	<div class="container-fluid">
     		<div class="row mb-2">
     			<div class="col-sm-6">
-	      			<h1>자료실</h1>
+	      			<h1>자유게시판</h1>
 	      		</div>	      		
 	    	
 	       		
 	       		<div class="col-sm-6">
 			      <ol class="breadcrumb float-sm-right">
-			        <li class="breadcrumb-item"><a href="list.do"><i class="fa fa-dashboard"></i>자료실</a></li>
-			        <li class="breadcrumb-item active">리스트</li>		        
+			           	        
 			      </ol>
 		      	</div>
 	     	</div>	     	
@@ -67,11 +66,12 @@
 			<div class="card-body">
 				<table class="table table-bordered text-center">
 					<tr style="font-size:0.95em;">
-						<th style="width:10%;">번 호</th>
-						<th style="width:50%;">제 목</th>
-						<th style="width:15%;">작성자</th>
+						<th style="width:8%;">번 호</th>
+						<th style="width:48%;">제 목</th>
+						<th style="width:12%;">작성자</th>
 						<th>등록일</th>
-						<th style="width:10%;">조회수</th>
+						<th style="width:7%;">조회수</th>
+						<th style="width:8%;">파일여부</th>
 					</tr>
 					<c:if test="${empty dataMap.boardList }">
 						<tr>
@@ -93,7 +93,8 @@
 						<td>
 							<fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/>
 						</td>
-						<td><span class="badge bg-red">${board.viewcnt }</span></td>						
+						<td><span class="badge bg-red">${board.viewcnt }</span></td>
+						<td><span class="badge"><img src="<%=request.getContextPath()%>/resources/images/file.png" ></span></td>							
 						</tr>					
 					</c:forEach>
 				</table>
